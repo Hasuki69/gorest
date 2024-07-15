@@ -1,0 +1,8 @@
+server:
+  port: 38600
+
+database:
+  dsn: "host=localhost user=postgres password=root dbname=template port=5432 sslmode=disable TimeZone=Asia/Jakarta"
+
+gorm:
+  prepare_stmt: true
