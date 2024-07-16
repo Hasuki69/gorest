@@ -2,6 +2,7 @@ package config
 
 import (
 	"fmt"
+	"gorest/internal/model/domain"
 
 	"github.com/spf13/viper"
 	"gorm.io/driver/postgres"
@@ -64,7 +65,9 @@ func InitDB(cfg *Config) (*gorm.DB, error) {
 	}
 
 	// AutoMigrate the Database
-	err = db.AutoMigrate()
+	err = db.AutoMigrate(
+		&domain.User{}, &domain.Session{},
+	)
 	if err != nil {
 		return nil, err
 	}

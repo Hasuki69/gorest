@@ -29,6 +29,8 @@ func NewRouter(handlers *handler.Handler) *echo.Echo {
 	})
 
 	// Define other routes
+	user := api.Group("/user")
+	user.GET("", handlers.GetAllUsers)
 
 	return e
 }

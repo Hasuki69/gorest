@@ -1,20 +1,24 @@
 package handler
 
-import "gorm.io/gorm"
+import (
+	"gorest/internal/repository"
+	"gorest/internal/service"
+	"gorm.io/gorm"
+)
 
 type (
 	Handler struct {
-		//
+		userService service.UserService
 	}
 )
 
 func NewHandler(db *gorm.DB) *Handler {
 
-	// Initialize repository
-
-	// Initialize service
+	// Create new user repository and service
+	userRepository := repository.NewUserRepository(db)
+	userService := service.NewUserService(userRepository)
 
 	return &Handler{
-		//
+		userService: userService,
 	}
 }
