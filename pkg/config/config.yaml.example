@@ -1,0 +1,13 @@
+server:
+  port: 38600
+
+database:
+  dsn: "user:pass@tcp(127.0.0.1:3306)/dbname?charset=utf8mb4&parseTime=True&loc=Local"
+  default_string_size: 256
+
+gorm:
+  prepare_stmt: true
+
+app:
+  path: "app/"
+  file: "index.html"

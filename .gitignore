@@ -1,2 +1,3 @@
 # ignore config files that may contain sensitive information
 pkg/config/config.yaml
+tmp/*

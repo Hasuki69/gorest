@@ -24,9 +24,10 @@ func main() {
 	handlers := handler.NewHandler(db)
 
 	// Initialize echo and router
-	echo := api.NewRouter(handlers)
+	echo := api.NewRouter(handlers, cfg)
 
 	// Start the server on the specified port
-	echo.Logger.Fatal(echo.Start(fmt.Sprintf(":%d", cfg.Server.Port)))
-
+	echo.Logger.Fatal(
+		echo.Start(fmt.Sprintf(":%d", cfg.Server.Port)),
+	)
 }

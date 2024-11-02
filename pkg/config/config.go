@@ -3,9 +3,9 @@ package config
 import (
 	"fmt"
 	"gorest/internal/model/domain"
+	"gorm.io/driver/mysql"
 
 	"github.com/spf13/viper"
-	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 )
@@ -16,17 +16,24 @@ type (
 	}
 
 	DB struct {
-		Dsn string `mapstructure:"dsn"`
+		Dsn               string `mapstructure:"dsn"`
+		DefaultStringSize uint   `mapstructure:"default_string_size"`
 	}
 
 	Gorm struct {
 		PrepareStmt bool `mapstructure:"prepare_stmt"`
 	}
 
+	App struct {
+		Path string `mapstructure:"path"`
+		File string `mapstructure:"file"`
+	}
+
 	Config struct {
 		Server Server `mapstructure:"server"`
 		DB     DB     `mapstructure:"database"`
 		Gorm   Gorm   `mapstructure:"gorm"`
+		App    App    `mapstructure:"app"`
 	}
 )
 
@@ -59,16 +66,22 @@ func InitDB(cfg *Config) (*gorm.DB, error) {
 	}
 
 	// Open Database Connection
-	db, err := gorm.Open(postgres.Open(cfg.DB.Dsn), gormConfig)
+	db, err := gorm.Open(
+		mysql.New(mysql.Config{
+			DSN:               cfg.DB.Dsn,
+			DefaultStringSize: cfg.DB.DefaultStringSize,
+		}),
+		gormConfig,
+	)
+
 	if err != nil {
 		return nil, fmt.Errorf("failed to connect to database: %w", err)
 	}
 
 	// AutoMigrate the Database
-	err = db.AutoMigrate(
+	if err = db.AutoMigrate(
 		&domain.User{}, &domain.Session{},
-	)
-	if err != nil {
+	); err != nil {
 		return nil, err
 	}
 
