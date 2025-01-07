@@ -196,7 +196,7 @@
         <entry key="file://$PROJECT_DIR$/internal/model/response/json.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1721183764277" />
+              <option name="lastModified" value="1736239394169" />
               <option name="schema">
                 <list>
                   <option value="Json" />
@@ -264,6 +264,6 @@
         <entry key="user_service" value="userService" />
       </map>
     </option>
-    <option name="lastTimeChecked" value="1734915885027" />
+    <option name="lastTimeChecked" value="1736238682749" />
   </component>
 </project>
