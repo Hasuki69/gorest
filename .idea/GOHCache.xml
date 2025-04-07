@@ -141,7 +141,7 @@
         <entry key="file://$PROJECT_DIR$/internal/api/router.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1730519390889" />
+              <option name="lastModified" value="1743999879978" />
             </ScannedPath>
           </value>
         </entry>
@@ -264,6 +264,6 @@
         <entry key="user_service" value="userService" />
       </map>
     </option>
-    <option name="lastTimeChecked" value="1742892879906" />
+    <option name="lastTimeChecked" value="1743999877425" />
   </component>
 </project>
